@@ -48,20 +48,20 @@ body {
 .page {
   position: relative;
   width: 210mm;
-  height: 280mm;
-  min-height: 280mm;
-  max-height: 280mm;
-  padding: 12mm 16mm 10mm;
-  margin: 0;
+  height: 296mm;
+  min-height: 296mm;
+  max-height: 296mm;
+  padding: 14mm 18mm 12mm;
+  margin: 0 auto 18px;
   background: var(--cream);
   overflow: hidden;
-  break-inside: avoid;
   page-break-inside: avoid;
+  break-inside: avoid;
 }
 
-.page:not(:last-child) {
-  break-after: page;
-  page-break-after: always;
+.page + .page {
+  page-break-before: always;
+  break-before: page;
 }
 
 .brand-logo {
@@ -468,12 +468,18 @@ h1 em {
     margin: 0;
   }
 
- .page {
-  width: 210mm;
-  height: 280mm;
-  min-height: 280mm;
-  max-height: 280mm;
-  margin: 0;
+  .page {
+    width: 210mm;
+    height: 296mm;
+    min-height: 296mm;
+    max-height: 296mm;
+    margin: 0;
+  }
+
+  .page + .page {
+    page-break-before: always;
+    break-before: page;
+  }
 }
 
 /* PDF-safe refinements */
@@ -544,6 +550,133 @@ h1 { font-size: 39px; max-width: 165mm; }
   color: var(--accent);
   font-size: 24px;
   line-height: 1;
+}
+
+
+
+/* =========================================================
+   FINAL PDFSHIFT LAYOUT FIX
+   Dieser Block steht bewusst zuletzt und überschreibt ältere Regeln.
+   ========================================================= */
+
+.page {
+  width: 210mm !important;
+  height: 296mm !important;
+  min-height: 296mm !important;
+  max-height: 296mm !important;
+  padding: 12mm 16mm 9mm !important;
+  margin: 0 !important;
+  overflow: hidden !important;
+  break-inside: avoid !important;
+  page-break-inside: avoid !important;
+}
+
+.page:not(:last-child) {
+  break-after: page !important;
+  page-break-after: always !important;
+}
+
+.page:last-child {
+  break-after: auto !important;
+  page-break-after: auto !important;
+}
+
+.brand-logo { width: 44mm !important; }
+.hero { margin-top: 11mm !important; }
+.kicker { margin-bottom: 3mm !important; }
+
+h1 {
+  max-width: 165mm !important;
+  margin-bottom: 3mm !important;
+  font-size: 36px !important;
+  line-height: 1 !important;
+}
+
+.lead {
+  max-width: 130mm !important;
+  margin-bottom: 7mm !important;
+  font-size: 11.5px !important;
+  line-height: 1.45 !important;
+}
+
+.overview {
+  grid-template-columns: 1fr 58mm !important;
+  gap: 12mm !important;
+  padding: 7mm 0 !important;
+}
+
+.meta { gap: 4mm !important; }
+.meta-item span { margin-bottom: 1mm !important; font-size: 7.5px !important; }
+.meta-item strong { font-size: 13px !important; }
+.score { min-height: 52mm !important; }
+.score::after { width: 47mm !important; height: 47mm !important; }
+.score-value { font-size: 49px !important; }
+.score-label { margin-top: 2.5mm !important; font-size: 7px !important; }
+.section { margin-top: 6mm !important; }
+.section-heading { margin-bottom: 3mm !important; font-size: 9px !important; }
+.section-heading::before { height: 5mm !important; }
+.metric { min-height: 10.5mm !important; }
+.metric-name { font-size: 8.5px !important; }
+.metric-index { font-size: 7px !important; }
+.metric-result { font-size: 8px !important; }
+.metric-result strong { min-width: 11mm !important; font-size: 13px !important; }
+.metric-result small { font-size: 7px !important; }
+
+.summary {
+  max-width: 170mm !important;
+  margin-bottom: 0 !important;
+  font-size: 12px !important;
+  line-height: 1.38 !important;
+}
+
+.page-number { bottom: 5mm !important; }
+.page-two-header { margin: 7mm 0 5mm !important; max-width: 160mm !important; }
+.page-two-header h2 {
+  max-width: 160mm !important;
+  margin-bottom: 2mm !important;
+  font-size: 27px !important;
+  line-height: 1.02 !important;
+}
+.page-two-header p { font-size: 9px !important; line-height: 1.35 !important; }
+.insight-grid { gap: 7mm !important; }
+.insight { min-height: 0 !important; height: 91mm !important; padding: 6mm !important; }
+.insight-number { margin-bottom: 5mm !important; font-size: 29px !important; }
+.insight h3 { margin-bottom: 3mm !important; font-size: 17px !important; }
+.insight-content { font-size: 8.5px !important; line-height: 1.4 !important; }
+.roadmap { margin-top: 5mm !important; }
+.roadmap .section-heading { margin-bottom: 1mm !important; }
+.roadmap-row {
+  grid-template-columns: 9mm 1fr 24mm !important;
+  gap: 4mm !important;
+  padding: 2.2mm 0 !important;
+}
+.roadmap-num { width: 7mm !important; height: 7mm !important; font-size: 7px !important; }
+.roadmap-row strong { margin-bottom: .5mm !important; font-size: 8.3px !important; }
+.roadmap-row p { font-size: 7.2px !important; line-height: 1.25 !important; }
+.roadmap-time { font-size: 6.8px !important; line-height: 1.25 !important; }
+.cta-link { margin-top: 4mm !important; padding: 4.5mm 6mm !important; }
+.cta-link h3 { margin-bottom: 1mm !important; font-size: 17px !important; }
+.cta-link p { font-size: 7.8px !important; line-height: 1.3 !important; }
+.cta-link .cta-arrow { width: 10mm !important; height: 10mm !important; font-size: 19px !important; }
+
+@media print {
+  html, body {
+    width: 210mm !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: transparent !important;
+  }
+  .report {
+    width: 210mm !important;
+    margin: 0 !important;
+  }
+  .page {
+    width: 210mm !important;
+    height: 296mm !important;
+    min-height: 296mm !important;
+    max-height: 296mm !important;
+    margin: 0 !important;
+  }
 }
 
 </style>
