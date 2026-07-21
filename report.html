@@ -48,12 +48,16 @@ body {
 .page {
   position: relative;
   width: 210mm;
+  height: 297mm;
   min-height: 297mm;
+  max-height: 297mm;
   padding: 17mm 18mm 15mm;
   margin: 0 auto 18px;
   background: var(--cream);
   overflow: hidden;
   page-break-after: always;
+  page-break-inside: avoid;
+  break-inside: avoid;
 }
 
 .page:last-child {
